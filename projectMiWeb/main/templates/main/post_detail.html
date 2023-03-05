@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% block title %}Post detail{% endblock title %}
+
+{% block content %}
+    <div class="post">
+            <h3 class="title">{{ post.date_posted }}</h3><br>
+            {% autoescape on %}
+                <p class="desc">
+                    {{ post.description}}
+                </p>
+            {% endautoescape %}
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% load main_tags %}
+{% block title %}Страница с постами{% endblock title %}
+
+{% block content %}
+        {% get_posts as posts %}
+        {% for post in posts %}
+            <div class="post">
+                <h3><span class="obj">{{ post.cat }}</span><br>На {{ post.date_posted }}</h3>
+                <p>{{ post.description|linebreaks }}</p>
+                {% if post.file %}
+
+                    <a href="{{ post.file.url }}">Файл</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+{% endblock content %}

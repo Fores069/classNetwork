@@ -1,0 +1,26 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/styles.css' %}">
+<div class="nav-scroller__items dragscroll">
+  <nav class="nav-scroller__items">
+    {% for cat in cats %}
+      {% if cat.posts_set.exists %}
+                <a class="nav-scroller__item" href="{{ cat.get_absolute_url }}">{{ cat }}</a>
+        {% else %}
+      {% endif %}
+      {% endfor %}
+  </nav>
+</div>
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+  const $navItems = document.querySelector('.nav-scroller__items');
+  const $navItemActive = $navItems.querySelector('.nav-scroller__item_active');
+  if (!$navItemActive) {
+    return;
+  }
+  const navItemsRect = $navItems.getBoundingClientRect();
+  const navItemActiveRect = $navItemActive.getBoundingClientRect();
+  const navItemsLeft = navItemActiveRect.left - navItemsRect.left + (navItemActiveRect.width - navItemsRect.width) / 2;
+  $navItems.scrollLeft = navItemsLeft;
+});
+
+ </script>
